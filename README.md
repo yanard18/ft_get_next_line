@@ -1,3 +1,3 @@
 ## Static Variables
 
-Static variable only initialized once, so they keep the value after function call ends.
+Static variable only initialized once, so they keep the value after function calls return.

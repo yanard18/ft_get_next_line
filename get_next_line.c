@@ -2,11 +2,6 @@
 
 char	*get_next_line(int fd)
 {
-
-}
-
-int	main(void)
-{
-	get_next_line(1);
-	return (0);
+	(void)fd;
+	return 0;
 }
