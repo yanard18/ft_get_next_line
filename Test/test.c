@@ -2,18 +2,26 @@
 #include <string.h>
 #include <unistd.h>
 #include <fcntl.h>
+#include <stdlib.h>
 #include "get_next_line.h"
+
+#define RED   "\033[0;31m"
+#define GREEN "\033[0;32m"
+#define RESET "\033[0m"
 
 void test(char *exp, char *res)
 {
+	if (!res)
+		return ;
 	if (strcmp(exp, res) == 0)
 	{
-		printf("[+] exp/res: %s\n", exp);
+		printf(GREEN "[+] exp/res: %s" RESET "\n", exp);
 	}
 	else
 	{
-		printf("[-] exp: %s, res:%s\n", exp, res);
+		printf(RED "[-] exp: %s, res:%s" RESET "\n", exp, res);
 	}
+	free(res);
 }
 
 int	main(void)
