@@ -11,5 +11,8 @@ typedef struct s_cache
 } t_cache;
 
 char	*get_next_line(int fd);
+size_t	ft_strlen(const char *s);
+char	*ft_substr(char const *s, unsigned int start, size_t len);
+char	*ft_strjoin(char *s1, char const *s2);
 
 #endif
