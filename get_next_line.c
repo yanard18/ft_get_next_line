@@ -103,7 +103,7 @@ char *extract_line(char *s, char **remain)
 	char *line;
 
 	len = 0;
-	while (s[len] != '\n')
+	while (s[len] != '\n' && s[len] != '\0')
 		len++;
 	nline_idx = len + 1;
 	line = ft_substr(s, 0, nline_idx);

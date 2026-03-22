@@ -15,11 +15,11 @@ void test(char *exp, char *res)
 		return ;
 	if (strcmp(exp, res) == 0)
 	{
-		printf(GREEN "[+] exp/res: %s" RESET "\n", exp);
+		printf(GREEN "[+] exp/res=%s" RESET "\n", exp);
 	}
 	else
 	{
-		printf(RED "[-] exp: %s, res:%s" RESET "\n", exp, res);
+		printf(RED "[-] exp=%s, res=%s" RESET "\n", exp, res);
 	}
 }
 
@@ -29,6 +29,7 @@ int	main(void)
 	/* work for BUFFER_SIZE=1024 */
 	test("That is not dead\n", get_next_line(fd));
 	test("which can eternal lie,\n", get_next_line(fd));
+	test("And with strange aeons\n", get_next_line(fd));
 	test("even death may die.", get_next_line(fd));
 	return (0);
 }
