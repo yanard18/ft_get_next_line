@@ -98,20 +98,18 @@ int has_no_line(char *s)
 
 char *extract_line(char *s, char **remain)
 {
-	int len;
-	int nline_idx;
-	char *line;
+    int len = 0;
+    char *line;
 
-	len = 0;
-	while (s[len] != '\n' && s[len] != '\0')
-		len++;
-	nline_idx = len + 1;
-	line = ft_substr(s, 0, nline_idx);
-	while (s[len])
-		len++;
-	*remain = ft_substr(s, nline_idx, len);
-	free (s);
-	return (line);
+    while (s[len] != '\n' && s[len] != '\0')
+        len++;
+    line = ft_substr(s, 0, (s[len] == '\n') ? len + 1 : len);
+    if (s[len] != '\0' && s[len + 1] != '\0')
+        *remain = ft_substr(s, len + 1, ft_strlen(s) - (len + 1));
+    else
+        *remain = NULL;
+    free(s);
+    return (line);
 }
 
 
