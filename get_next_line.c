@@ -1,8 +1,5 @@
 #include "get_next_line.h"
-#include "get_next_line.h"
 #include <stdlib.h>
-
-
 
 int has_no_line(char *s)
 {
@@ -40,6 +37,8 @@ char	*get_next_line(int fd)
 	char read_buf[BUFFER_SIZE + 1];
 	int bytes_read;
 
+	if (fd < 0 || BUFFER_SIZE <= 0)
+		return (NULL);
 	while (has_no_line(cache))
 	{
 		bytes_read = read(fd, read_buf, BUFFER_SIZE);
