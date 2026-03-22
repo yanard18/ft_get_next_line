@@ -6,7 +6,8 @@ all:
 	valgrind --leak-check=full ./a.out
 	$(CC) $(CFLAGS) $(FILES) -D BUFFER_SIZE=2048
 	valgrind --leak-check=full ./a.out
-	$(CC) $(CFLAGS) $(FILES) -D BUFFER_SIZE=100000
+# stack only can hold 8MB so if read_buf stored in stack this will cause error
+	$(CC) $(CFLAGS) $(FILES) -D BUFFER_SIZE=10000000
 	valgrind --leak-check=full ./a.out
 	$(CC) $(CFLAGS) $(FILES) -D BUFFER_SIZE=1
 	valgrind --leak-check=full ./a.out
