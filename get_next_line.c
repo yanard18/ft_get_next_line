@@ -39,12 +39,15 @@ char	*get_next_line(int fd)
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
-	while (has_no_line(cache))
+	bytes_read = 1;
+	while (has_no_line(cache) && bytes_read > 0)
 	{
 		bytes_read = read(fd, read_buf, BUFFER_SIZE);
-		if (bytes_read <= 0)
+		if (bytes_read == -1)
 		{
-			return (cache);
+            free(cache);
+            cache = NULL;
+            return (NULL);
 		}
 		read_buf[bytes_read] = '\0';
 		cache = ft_strjoin(cache, (const char*)read_buf);
