@@ -21,7 +21,6 @@ void test(char *exp, char *res)
 	{
 		printf(RED "[-] exp: %s, res:%s" RESET "\n", exp, res);
 	}
-	free(res);
 }
 
 int	main(void)
