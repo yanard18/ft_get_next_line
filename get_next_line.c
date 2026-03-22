@@ -14,26 +14,30 @@ int has_no_line(char *s)
 	return (1);
 }
 
-char *extract_line(char *s, char **remain)
+char *extract_line(char **cache)
 {
     int len = 0;
     char *line;
+    char *temp;
 
-	if (!s || s[0] == '\0')
+    if (!cache || !*cache || **cache == '\0')
     {
-        if (s)
-            free(s);
-        *remain = NULL;
+        if (cache && *cache)
+        {
+            free(*cache);
+            *cache = NULL;
+        }
         return (NULL);
     }
-    while (s[len] != '\n' && s[len] != '\0')
+    temp = *cache;
+    while (temp[len] != '\n' && temp[len] != '\0')
         len++;
-    line = ft_substr(s, 0, (s[len] == '\n') ? len + 1 : len);
-    if (s[len] != '\0' && s[len + 1] != '\0')
-        *remain = ft_substr(s, len + 1, ft_strlen(s) - (len + 1));
+    line = ft_substr(temp, 0, (temp[len] == '\n') ? len + 1 : len);
+    if (temp[len] != '\0' && temp[len + 1] != '\0')
+        *cache = ft_substr(temp, len + 1, ft_strlen(temp) - (len + 1));
     else
-        *remain = NULL;
-    free(s);
+        *cache = NULL;
+    free(temp); // Free the original string
     return (line);
 }
 
@@ -63,5 +67,5 @@ char	*get_next_line(int fd)
 		cache = ft_strjoin(cache, (const char*)read_buf);
 	}
 	free(read_buf);
-	return(extract_line(cache, &cache));
+	return(extract_line(&cache));
 }
