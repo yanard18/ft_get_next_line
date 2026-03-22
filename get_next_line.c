@@ -19,6 +19,13 @@ char *extract_line(char *s, char **remain)
     int len = 0;
     char *line;
 
+	if (!s || s[0] == '\0')
+    {
+        if (s)
+            free(s);
+        *remain = NULL;
+        return (NULL);
+    }
     while (s[len] != '\n' && s[len] != '\0')
         len++;
     line = ft_substr(s, 0, (s[len] == '\n') ? len + 1 : len);
@@ -29,7 +36,6 @@ char *extract_line(char *s, char **remain)
     free(s);
     return (line);
 }
-
 
 char	*get_next_line(int fd)
 {
