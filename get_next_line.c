@@ -126,7 +126,7 @@ char	*get_next_line(int fd)
 		bytes_read = read(fd, read_buf, BUFFER_SIZE);
 		if (bytes_read <= 0)
 		{
-			return (NULL);
+			return (cache);
 		}
 		read_buf[bytes_read] = '\0';
 		cache = ft_strjoin(cache, (const char*)read_buf);
