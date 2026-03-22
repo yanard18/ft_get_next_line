@@ -11,9 +11,7 @@
 
 void test(char *exp, char *res)
 {
-	if (!res)
-		return ;
-	if (strcmp(exp, res) == 0)
+	if (res && strcmp(exp, res) == 0)
 	{
 		printf(GREEN "[+] exp/res=%s" RESET "\n", exp);
 	}
